@@ -1,1 +1,5 @@
-sudo apt-get update
+---
+- hosts: testhosts
+  tasks:
+  - name: update package
+    shell: sudo apt-get update
