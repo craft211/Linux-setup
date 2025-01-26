@@ -3,17 +3,29 @@
 #Update and upgrade the system
 sudo apt update && sudo apt upgrade -y
 
+#Notification when system update and upgrade is complete
+echo -e "\e[32m#System update and upgrade completed successfully.\e[0m"
+
 #Install QEMU Guest Agent
 sudo apt-get install qemu-guest-agent -y
 
 #Start QEMU Guest Agent
 systemctl start qemu-guest-agent
 
+#Notification when QEMU Agent is installed
+echo -e "\e[32m#QEMU Agent is installed.\e[0m"
+
 #Install CIFS utilities
 sudo apt-get install cifs-utils -y
 
+#Notification when CIFS utilities are installed
+echo -e "\e[32m#QEMU Agent is installed.\e[0m"
+
 #Create directory for mounting
 sudo mkdir /data
+
+#Notification when data directory is created
+echo -e "\e[32m#data directory is created.\e[0m"
 
 #Edit /etc/fstab to include CIFS mount if not already present
 if ! grep -q "//10.0.0.10/data /data cifs credentials=/home/james/.smbcredentials 0 0" /etc/fstab; then
@@ -24,6 +36,7 @@ echo -e "\e[32m#CIFS mount already exists in /etc/fstab.\e[0m"
 fi
 
 #Prompt user for credentials
+echo -e "Please enter the credentials for the SMB mount"
 read -p "Enter CIFS username: " cifs_username
 read -sp "Enter CIFS password: " cifs_password
 echo
@@ -52,9 +65,9 @@ sudo mount /data
 
 #Check if the folder 'media' exists in the mounted directory
 if [ -d "/data/media" ]; then
-echo -e "\e[32m#The folder 'media' exists in /data.\e[0m"
+echo -e "\e[32m#/data has been created and mounted.\e[0m"
 else
-echo -e "\e[32m#The folder 'media' does not exist in /data.\e[0m"
+echo -e "\e[32m#There is an issue with the /data mount.\e[0m"
 fi
 
 #Navigate to /opt/ and download Servarr install script
