@@ -30,6 +30,8 @@ fi
 
 # Set appropriate permissions for the credentials file
 sudo chmod 600 /home/james/.smbcredentials
+sudo chown james /home/james/.smbcredentials
+sudo chgrp james /home/james/.smbcredentials
 
 # Reload Daemon
 sudo systemctl daemon-reload
