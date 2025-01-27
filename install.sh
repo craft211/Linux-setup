@@ -71,14 +71,14 @@ echo -e "\e[32m#There is an issue with the /data mount.\e[0m"
 fi
 
 #Navigate to /opt/ and download Servarr install script
-curl -o servarr-install-script.sh https://raw.githubusercontent.com/Servarr/Wiki/master/servarr/servarr-install-script.sh
+sudo curl -o servarr-install-script.sh https://raw.githubusercontent.com/Servarr/Wiki/master/servarr/servarr-install-script.sh
 
 #Change Servarr install script permissions
-sudo chmod +x /servarr-install-script.sh
+sudo chmod +x servarr-install-script.sh
 
 #Run Servarr install script only if no errors occurred above
 if [ -d "/data/media" ]; then
-echo -e "sudo /servarr-install-script.sh"
+echo -e "sudo ./servarr-install-script.sh"
 else
 echo -e "\e[32m#There is an issue with the /data mount.\e[0m"
 fi
