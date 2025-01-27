@@ -19,13 +19,13 @@ echo -e "\e[32m#QEMU Agent is installed.\e[0m"
 sudo apt-get install cifs-utils -y
 
 #Notification when CIFS utilities are installed
-echo -e "\e[32m#QEMU Agent is installed.\e[0m"
+echo -e "\e[32m#CIFS utilities are installed.\e[0m"
 
-#Create directory for mounting
+#Create a data directory for mounting
 sudo mkdir /data
 
-#Notification when data directory is created
-echo -e "\e[32m#data directory is created.\e[0m"
+#Notification when /data directory is created
+echo -e "\e[32m#Data directory is created.\e[0m"
 
 #Edit /etc/fstab to include CIFS mount if not already present
 if ! grep -q "//10.0.0.10/data /data cifs credentials=/home/james/.smbcredentials 0 0" /etc/fstab; then
@@ -73,3 +73,15 @@ fi
 #Navigate to /opt/ and download Servarr install script
 cd /opt/
 curl -o servarr-install-script.sh https://raw.githubusercontent.com/Servarr/Wiki/master/servarr/servarr-install-script.sh
+
+#Change Servarr install script permissions
+sudo chmod +x /opt/servarr-install-script.sh
+
+#Run Servarr install script only if no errors occurred above
+if [ $? -eq 0 ]; then
+sudo /opt/servarr-install-script.sh
+echo -e "\e[32m#Servarr install script executed successfully.\e[0m"
+else
+echo -e "\e[31m#An error occurred earlier. Servarr install script not executed.\e[0m"
+fi
+
