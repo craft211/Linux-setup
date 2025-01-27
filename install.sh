@@ -78,7 +78,7 @@ sudo chmod +x servarr-install-script.sh
 
 #Run Servarr install script only if no errors occurred above
 if [ -d "/data/media" ]; then
-echo -e "sudo ./servarr-install-script.sh"
+    sudo ./servarr-install-script.sh
 else
-echo -e "\e[32m#There is an issue with the /data mount.\e[0m"
+    echo -e "\e[32m# There is an issue with the /data mount.\e[0m"
 fi
